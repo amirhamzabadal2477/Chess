@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Neon Chess</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Rajdhani:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="hud">
+        <div class="title-block">
+          <p class="eyebrow">Single Player</p>
+          <h1>Neon Chess</h1>
+          <p class="tagline">Smooth animated chess with a sharp, digital glow.</p>
+        </div>
+        <div class="hud-panel">
+          <div class="hud-row">
+            <span class="label">Turn</span>
+            <span id="turn">White</span>
+          </div>
+          <div class="hud-row">
+            <span class="label">Status</span>
+            <span id="status">Your move</span>
+          </div>
+          <div class="hud-row">
+            <label class="label" for="difficulty">Difficulty</label>
+            <div class="slider-wrap">
+              <input id="difficulty" class="slider" type="range" min="1" max="4" step="1" value="2" />
+              <span id="difficulty-label" class="slider-label">Sharp</span>
+            </div>
+          </div>
+          <button id="new-game" class="btn primary">New Game</button>
+          <div class="hud-actions">
+            <button id="hint" class="btn ghost">Hint</button>
+            <button id="undo" class="btn ghost">Undo</button>
+            <button id="redo" class="btn ghost">Redo</button>
+            <button id="flip" class="btn ghost">Flip Board</button>
+          </div>
+        </div>
+      </header>
+
+      <section class="arena">
+        <div class="board-shell">
+          <div id="board" class="board" role="application" aria-label="Chess board"></div>
+          <div id="piece-layer" class="piece-layer" aria-hidden="true"></div>
+          <div id="overlay" class="overlay hidden" aria-live="polite">
+            <div id="gameover-panel" class="overlay-card hidden">
+              <h2 id="gameover-title">Checkmate</h2>
+              <p id="gameover-text">The battle is over.</p>
+              <button id="restart" class="btn primary">Play again</button>
+            </div>
+            <div id="promotion-panel" class="overlay-card hidden">
+              <h2>Promote pawn</h2>
+              <p>Choose a piece for your promotion.</p>
+              <div class="promotion-options">
+                <button class="btn ghost" data-piece="q">♕</button>
+                <button class="btn ghost" data-piece="r">♖</button>
+                <button class="btn ghost" data-piece="b">♗</button>
+                <button class="btn ghost" data-piece="n">♘</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="side-panel">
+          <div class="panel">
+            <h2>Moves</h2>
+            <ol id="move-log" class="move-log"></ol>
+          </div>
+          <div class="panel">
+            <h2>Captured</h2>
+            <div class="captured-block">
+              <div class="captured-row" id="captured-white" aria-label="White pieces captured"></div>
+              <div class="captured-row" id="captured-black" aria-label="Black pieces captured"></div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <p class="help">
+        Click a white piece to see legal moves. Click a glowing square to move. Press
+        R to restart.
+      </p>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
